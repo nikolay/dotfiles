@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs = inputs @ {
@@ -24,6 +25,9 @@
           modules = [./configuration.nix inputs.home-manager.darwinModules.default];
         };
       };
+      imports = [
+        inputs.devenv.flakeModule
+      ];
       systems = [
         "aarch64-darwin"
       ];
